@@ -54,4 +54,8 @@ public class Leilao {
 		return lancesUsuario.get(lancesUsuario.size() - 1).getValor();
 	}
 
+	public int getQuantidadeLances() {		
+		return this.lances.size();
+	}
+
 }

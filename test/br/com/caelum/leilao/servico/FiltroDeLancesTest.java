@@ -5,17 +5,25 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Usuario;
 
 public class FiltroDeLancesTest {
-	@Test
-	public void deveSelecionarLancesEntre1000E3000() {
-		Usuario joao = new Usuario("Joao");
+	
+	private FiltroDeLances filtro;
+	private Usuario joao;
 
-		FiltroDeLances filtro = new FiltroDeLances();
+	@Before
+	public void setUp() {
+		this.joao = new Usuario("Joao");
+		this.filtro = new FiltroDeLances();
+	}
+	
+	@Test
+	public void deveSelecionarLancesEntre1000E3000() {		
 		List<Lance> resultado = filtro.filtra(Arrays.asList(new Lance(joao, 2000), new Lance(joao, 1000),
 				new Lance(joao, 3000), new Lance(joao, 800)));
 
@@ -24,10 +32,7 @@ public class FiltroDeLancesTest {
 	}
 
 	@Test
-	public void deveSelecionarLancesEntre500E700() {
-		Usuario joao = new Usuario("Joao");
-
-		FiltroDeLances filtro = new FiltroDeLances();
+	public void deveSelecionarLancesEntre500E700() {		
 		List<Lance> resultado = filtro.filtra(
 				Arrays.asList(new Lance(joao, 600), new Lance(joao, 500), new Lance(joao, 700), new Lance(joao, 800)));
 
@@ -36,10 +41,7 @@ public class FiltroDeLancesTest {
 	}
 	
 	@Test
-	public void deveSelecionarLancesMaiores5000() {
-		Usuario joao = new Usuario("Joao");
-
-		FiltroDeLances filtro = new FiltroDeLances();
+	public void deveSelecionarLancesMaiores5000() {		
 		List<Lance> resultado = filtro.filtra(
 				Arrays.asList(new Lance(joao, 100), new Lance(joao, 7000), new Lance(joao, 6000), new Lance(joao, 200)));
 
@@ -50,9 +52,6 @@ public class FiltroDeLancesTest {
 	
 	@Test
 	public void deveSelecionarLancesListaVazia() {
-		Usuario joao = new Usuario("Joao");
-
-		FiltroDeLances filtro = new FiltroDeLances();
 		List<Lance> resultado = filtro.filtra(
 				Arrays.asList(new Lance(joao, 100), new Lance(joao, 120), new Lance(joao, 800), new Lance(joao, 200)));
 
